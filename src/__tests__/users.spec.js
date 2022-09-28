@@ -8,8 +8,8 @@ describe('Users', () => {
     const response = await request(app)
       .post('/users')
       .send({
-        name: 'John Doe',
-        username: 'johndoe'
+        name: 'Thiago Lourenco',
+        username: 'Thi'
       })
     expect(201);
 
