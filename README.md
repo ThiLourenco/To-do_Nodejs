@@ -69,10 +69,6 @@ A rota deve receber, pelo header da requisição, uma propriedade `username` con
 
 Em cada teste, tem uma breve descrição no que sua aplicação deve cumprir para que o teste passe.
 
-<aside>
-💡 Caso você tenha dúvidas quanto ao que são os testes, e como interpretá-los, dê uma olhada em **[nosso FAQ](https://www.notion.so/ddd8fcdf2339436a816a0d9e45767664)**
-
-</aside>
 
 Para esse desafio, temos os seguintes testes:
 
@@ -80,7 +76,7 @@ Para esse desafio, temos os seguintes testes:
 
 - **Should be able to create a new user**
 
-Para que esse teste passe, você deve permitir que um usuário seja criado e retorne um JSON com o usuário criado. Você pode ver o formato de um usuário [aqui](https://www.notion.so/Desafio-01-Conceitos-do-Node-js-59ccb235aecd43a6a06bf09a24e7ede8). 
+Para que esse teste passe, você deve permitir que um usuário seja criado e retorne um JSON com o usuário criado.
 
 Também é necessário que você retorne a resposta com o código `201`.
 
@@ -165,7 +161,3 @@ Para que esse teste passe, você não deve permitir excluir um *todo* que não e
 	error: 'Mensagem do erro'
 }
 ```
-
-# 📅 Entrega
-
-Esse desafio deve ser entregue a partir da plataforma da Rocketseat. Envie o link do repositório que você fez suas alterações. Após concluir o desafio, além de ter mandado o código para o GitHub, fazer um post no Linkedin é uma boa forma de demonstrar seus conhecimentos e esforços para evoluir na sua carreira para oportunidades futuras.
