@@ -50,7 +50,7 @@ app.post('/users', (request, response) => {
 
   if(userAlreadyExists) {
     return response.status(400).json({
-      message: 'User already exists',
+      error: 'User already exists',
     })
   }
 
@@ -134,7 +134,7 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
 
   user.todos.splice(taskIndex, 1);
 
-  return response.status(204)
+  return response.status(204).json()
 });
 
 module.exports = app;
