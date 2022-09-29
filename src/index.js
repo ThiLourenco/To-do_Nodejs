@@ -30,7 +30,7 @@ function checkTodoExists(request, response, next) {
   const { id } = request.params;
   const { user } = request;
 
-  const todo = user.todos.find(t => t.id === id);
+  const todo = user.todos.find(todo => todo.id === id);
 
   console.log(todo, user);
 
