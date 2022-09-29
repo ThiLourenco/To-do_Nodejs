@@ -94,7 +94,7 @@ app.put('/todos/:id', checksExistsUserAccount, checkTodoExists, (request, respon
   const { id } = request.params;
   const { user } = request;
 
-  const task = user.todos.find((task) => task.id == id);
+  const task = user.todos.find(task => task.id == id);
 
   if (!task) {
     return response.status(404).json({ error: "Task not found" });
@@ -111,7 +111,7 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
   const { id } = request.params;
   const { user } = request;
 
-  const task = user.todos.find((task) => task.id == id);
+  const task = user.todos.find(task => task.id == id);
 
   if (!task) {
     return response.status(404).json({ error: "Task not found" });
@@ -126,7 +126,7 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
   const { id } = request.params;
   const { user } = request;
 
-  const taskIndex = user.todos.findIndex((task) => task.id == id);
+  const taskIndex = user.todos.findIndex(task => task.id == id);
 
   if (taskIndex == -1) {
     return response.status(404).json({ error: "Task not found" });
