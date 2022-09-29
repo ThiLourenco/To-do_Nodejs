@@ -26,6 +26,23 @@ next();
 
 }
 
+function checkTodoExists(request, response, next) {
+  const { id } = request.params;
+  const { user } = request;
+
+  const todo = user.todos.find(t => t.id === id);
+
+  console.log(todo, user);
+
+  if (!todo) {
+    return response.status(404).json({ error: 'Todo not found' });
+  }
+
+  request.todo = todo;
+
+  return next();
+}
+
 app.post('/users', (request, response) => {
   const { name, username } = request.body;
 
@@ -56,8 +73,8 @@ app.get('/todos', checksExistsUserAccount, (request, response) => {
 });
 
 app.post('/todos', checksExistsUserAccount, (request, response) => {
-  const { title, deadline } = request.body;
-  const { user } = request;
+  const { title, deadline } = request.body
+  const { user } = request
   
   const todo = {
     id: uuidv4(),
@@ -72,16 +89,52 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
 
 });
 
-app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
-  
+app.put('/todos/:id', checksExistsUserAccount, checkTodoExists, (request, response) => {
+  const { title, deadline } = request.body;
+  const { id } = request.params;
+  const { user } = request;
+
+  const task = user.todos.find((task) => task.id == id);
+
+  if (!task) {
+    return response.status(404).json({ error: "Task not found" });
+  }
+
+  task.title = title;
+  task.deadline = new Date(deadline);
+
+  return response.status(201).json(task);
+
 });
 
 app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
-  // Complete aqui
+  const { id } = request.params;
+  const { user } = request;
+
+  const task = user.todos.find((task) => task.id == id);
+
+  if (!task) {
+    return response.status(404).json({ error: "Task not found" });
+  }
+  
+  task.done = true;
+
+  return response.status(201).json(task);
 });
 
 app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
-  // Complete aqui
+  const { id } = request.params;
+  const { user } = request;
+
+  const taskIndex = user.todos.findIndex((task) => task.id == id);
+
+  if (taskIndex == -1) {
+    return response.status(404).json({ error: "Task not found" });
+  }
+
+  user.todos.splice(taskIndex, 1);
+
+  return response.status(204)
 });
 
 module.exports = app;
